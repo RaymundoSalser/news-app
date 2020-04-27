@@ -1,4 +1,10 @@
-@import "_main";
+body, html{
+	font-family: 'Montserrat', sans-serif;
+}
+
+.content, .card, a, p, .text-muted{
+	transition: all .5s;
+}
 
 .searchGroup{
 	position: absolute;

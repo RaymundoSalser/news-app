@@ -1,0 +1,51 @@
+.ui.placeholder, .ui.placeholder .image.header:after, .ui.placeholder .line, .ui.placeholder .line:after{
+	transition: all .5s;
+}
+
+.theme--dark{
+	.content{
+		background-color: $gray-800;
+		color: $light;
+	}
+
+	.card{
+		background-color: $gray-600;
+
+		.blockquote-footer{
+			@extend .text-muted;
+		}
+
+		a{
+			color: $light;
+		}
+	}
+
+	.text-muted{
+		color: $gray-400 !important;
+	}
+
+	.badge-secondary, .btn-secondary{
+		background-color: $light;
+		color: $gray-700;
+	}
+
+	.btn-outline-secondary{
+		border-color: $light;
+		color: $light;
+	}
+
+	.page-link{
+		background-color: $gray-600;
+		border-color: $gray-700;
+		color: $light;
+	}
+
+	.ui.placeholder{
+		background-image: linear-gradient(to right, $gray-700 0%, $gray-800 15%, $gray-700 30%);
+    	background-size: 1200px 100%;
+	}
+
+	.ui.placeholder, .ui.placeholder .image.header:after, .ui.placeholder .line, .ui.placeholder .line:after{
+		background-color: $gray-600;
+	}
+}

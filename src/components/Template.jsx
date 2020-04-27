@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faTimes, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { Link, matchPath } from "react-router-dom";
 import ReactCountryFlag from "react-country-flag"
 import { connect } from "react-redux";
@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { setCountry } from "../assets/redux/actions";
 import { categories, countries } from "../assets/utils/Objects";
 import Util from "../assets/utils";
-import "../assets/scss/template.scss";
+import "../assets/scss/main.scss";
 
 class Template extends Component{
 	constructor(props) {
@@ -17,8 +17,25 @@ class Template extends Component{
 		this.state = {
 			category : "All",
 			...this.props.location.state,
-			searchCountry : ""
+			searchCountry : "",
+			darkMode : false
 		};
+	}
+
+	componentDidMount(){
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			this.setState({
+				darkMode : true
+			});
+		}
+	}
+
+	componentDidUpdate(){
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+			this.setState({
+				darkMode : e.matches ? true : false
+			});
+		});
 	}
 
 	search = (evt) => {
@@ -76,17 +93,28 @@ class Template extends Component{
 		});
 	}
 
+	toggleTheme = () => {
+		this.setState(state => {
+			return {
+				darkMode : !state.darkMode
+			}
+		});
+	}
+
 	render(){
 		const match = matchPath(this.props.location.pathname, {
 			path: "/search/:query"
 		})
 
 		return(
-			<div className="page">
+			<div id="page" className={`theme--${this.state.darkMode ? "dark" : "light"}`}>
 				<Navbar bg="primary" variant="dark" expand="lg" className="py-lg-4 px-lg-5 px-0 py-3 pb-0">
 					<Link to="/" className="mx-4 navbar-brand">
 						<img src="https://www.workit-software.com/wp-content/uploads/2018/02/logo_workit.png" alt="Workit Software"/>
 					</Link>
+					<Button variant="outline-light" aria-controls="basic-navbar-nav" className="mr-2 ml-auto d-lg-none" onClick={ this.toggleTheme }>
+						<FontAwesomeIcon icon={this.state.darkMode ? faSun : faMoon} />
+					</Button>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-4" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="mr-auto w-100">
@@ -125,6 +153,9 @@ class Template extends Component{
 									})
 								}
 							</NavDropdown>
+							<Nav.Link variant="outline-light" aria-controls="basic-navbar-nav" className="ml-1 d-none d-lg-block" onClick={ this.toggleTheme }>
+								<FontAwesomeIcon icon={this.state.darkMode ? faSun : faMoon} />
+							</Nav.Link>
 						</Nav>
 						<Form inline className={`searchGroup ${match && match.params.query ? "active" : ""}`} id="searchGroup" onSubmit={ this.onSubmit }>
 							<Form.Group>
