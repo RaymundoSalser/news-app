@@ -1,4 +1,9 @@
-This project was created with [Create React App](https://github.com/facebook/create-react-app).
+# Raymundo Salazar
+[raymundo.salser@hotmail.com](raymundo.salser@hotmail.com)
+
+\+52 1 818 684 3534
+
+==========================================================================
 
 ## Run Project
 
@@ -32,3 +37,5 @@ $ serve -s build
 ```
 
 AND READY!
+
+_This project was created with __[Create React App](https://github.com/facebook/create-react-app)__._
