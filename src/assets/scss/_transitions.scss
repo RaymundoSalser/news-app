@@ -1,0 +1,37 @@
+#content{
+	position: relative;
+	background-color: #fff;
+
+	.content{
+		padding: 20px;
+
+		&.slide-enter,
+		&.slide-exit {
+			transition: transform 1s ease-in-out, opacity .5s;
+		}
+
+		&.slide-enter {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+
+		&.slide-enter.slide-enter-active {
+			transform: translateX(0%);
+			opacity: 1;
+		}
+
+		&.slide-exit {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			transform: translateX(0%);
+			opacity: 1;
+		}
+
+		&.slide-exit-active {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+	}
+}

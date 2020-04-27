@@ -1,0 +1,155 @@
+@import "_main";
+
+.searchGroup{
+	position: absolute;
+	opacity: 0;
+	transition: all .5s;
+	top: -100%;
+	width: 100%;
+	left: 0;
+
+	.form-group{
+		width: 100%;
+	}
+
+	.searchGroupInput{
+		position: relative;
+		border: 1px solid white;
+		border-radius: 5px;
+		margin-right: 10px;
+		align-items: stretch;
+		flex: 1;
+
+		#searchInput{
+			border-color: transparent;
+		}
+
+		.category-select{
+			.btn{
+				padding: 18px 20px;
+				border-radius: 0px 5px 5px 0px;
+			}
+		}
+	}
+
+	&.active{
+		top: 0%;
+		flex: 1;
+		height: 100%;
+		background-color: $primary;
+		padding: 20px;
+		opacity: 1;
+
+		label{
+			display: none;
+		}
+
+		#searchInput{
+			&:focus{
+				width: 100%!important;
+			}
+
+			&::placeholder{
+				color: rgba(255, 255, 255, .5);
+			}
+		}
+	}
+
+	label{
+		position: absolute;
+		color: white;
+		right: 20px;
+	}
+
+	.closeButton, .searchButton{
+		display: block;
+		padding: 18px 30px;
+		
+		svg {
+			margin-left: 15px;
+		}
+	}
+
+	.closeButton{
+		margin-right: 10px; 
+		svg{
+			margin-left: 0;
+		}
+	}
+
+	#searchInput{
+		background-color: transparent;
+		color: white;
+		padding: 30px;
+		padding-right: 33px;
+		width: 100%!important;
+		border-color: white;
+		flex: 6;
+
+		&.has-error{
+			color: $danger;
+			border-color: $danger;
+
+			&::placeholder{
+				color: $danger;
+			}
+		}
+	}
+}
+
+@include media-breakpoint-down(md){
+	#basic-navbar-nav{
+		background-color: rgba(255, 255, 255, .1) !important;
+		margin-top: map-get($spacers, 4);
+		padding: map-get($spacers, 2) 0;
+		margin-bottom: 0;
+
+		.nav-link{
+			border-bottom: 1px solid rgba(255, 255, 255, .3);
+			padding: map-get($spacers, 3) map-get($spacers, 4);
+
+			&.dropdown-toggle{
+				display: flex;
+				align-items: center;
+
+				&[aria-expanded=true]{
+					&:after{
+						transform: rotate(180deg);
+					}					
+				}
+
+				&:after{
+					margin-left: auto;
+					transition : all .5s;
+				}
+			}
+		}
+
+		.nav-item{
+			&:last-child{
+				.nav-link{
+					border-bottom: none;
+				}
+			}
+
+			.dropdown-menu{
+				background-color: rgba(255, 255, 255, .2) !important;
+				padding: map-get($spacers, 2) 0;
+				border-radius: 0;
+				border: none;
+				max-height: 300px;
+				overflow-y: scroll;
+
+				.dropdown-item{
+					color: white;
+					padding: map-get($spacers, 2) map-get($spacers, 4);
+					transition: all .5s;
+
+					&:hover{
+						color: $gray-700;
+					}
+				}
+			}
+		}
+	}
+}
